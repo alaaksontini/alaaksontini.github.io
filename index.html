@@ -1,388 +1,158 @@
 <!DOCTYPE html>
-<!--[if IE 7]><html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
-<!--[if IE 8]><html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html lang="en">
-
-<!-- Mirrored from demo.deviserweb.com/cv/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Feb 2017 19:57:03 GMT -->
 <head>
-        <meta charset="utf-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alaa Ksontini | Deterministic data pipelines for LLM features</title>
+<meta name="description" content="Senior backend engineer. I build the deterministic data pipelines that make LLM features work in production. Casablanca, remote for EU/US teams.">
+<meta name="author" content="Alaa Ksontini">
+<meta property="og:title" content="Alaa Ksontini | Deterministic data pipelines for LLM features">
+<meta property="og:description" content="I build the deterministic data pipelines that make LLM features work in production.">
+<meta property="og:type" content="website">
+<link rel="icon" href="assets/images/favicon.ico">
+<style>
+:root{--bg:#0b0f14;--panel:#121923;--line:#1f2b3a;--text:#d7e0ea;--dim:#8394a7;--accent:#5eead4;--warn:#fbbf24;--bad:#f87171}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background-image:radial-gradient(circle at 1px 1px,#16202c 1px,transparent 0);background-size:28px 28px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;font-size:14px}
+nav .links a{margin-left:22px;color:var(--dim)}
+nav .links a:hover{color:var(--accent);text-decoration:none}
+.hero{display:grid;grid-template-columns:1fr 240px;gap:48px;align-items:center;padding:56px 0 40px}
+.tag{color:var(--accent);font-size:14px;margin:0 0 18px}
+h1{font-size:clamp(34px,5.4vw,54px);line-height:1.1;margin:0 0 20px;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lede{color:var(--dim);max-width:560px;margin:0 0 28px}
+.cta a{display:inline-block;padding:11px 20px;border:1px solid var(--accent);border-radius:6px;margin:0 12px 10px 0;font-size:15px}
+.cta a.primary{background:var(--accent);color:#06201c;font-weight:600}
+.cta a:hover{text-decoration:none;opacity:.85}
+.photo{position:relative;width:240px;height:240px;border-radius:14px;border:1px solid var(--line);background:var(--panel);overflow:hidden;box-shadow:0 0 0 6px #0f1620,0 0 60px rgba(94,234,212,.12)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
+.photo .mono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:72px;color:var(--accent)}
+.photo:after{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 3px);pointer-events:none}
+.caption{font-size:12px;color:var(--dim);text-align:center;margin-top:12px}
+section{padding:44px 0;border-top:1px solid var(--line)}
+h2{font-size:14px;font-weight:500;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin:0 0 26px}
+h2 b{color:var(--accent);font-weight:500}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:8px 0 14px}
+.stage{background:var(--panel);border:1px solid var(--line);padding:16px 12px;text-align:center;position:relative;font-size:13px}
+.stage+.stage{margin-left:-1px}
+.stage strong{display:block;color:var(--accent);font-size:13px;margin-bottom:4px;letter-spacing:.06em}
+.stage span{color:var(--dim);font-size:12px}
+.stage.model{border-color:var(--warn);border-style:dashed}
+.stage.model strong{color:var(--warn)}
+.flowlabel{display:flex;justify-content:space-between;font-size:12px;color:var(--dim)}
+.flowlabel .m{color:var(--warn)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:22px}
+.card h3{margin:0 0 8px;font-size:17px}
+.card p{margin:0;color:var(--dim);font-size:15px}
+.card .n{color:var(--accent);font-size:13px;margin-bottom:10px;display:block}
+.term{background:#070a0e;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.term .bar{background:var(--panel);padding:9px 14px;font-size:12px;color:var(--dim);border-bottom:1px solid var(--line)}
+.term pre{margin:0;padding:18px 20px;overflow-x:auto;font-size:14px;line-height:1.7}
+.ok{color:var(--accent)}.bad{color:var(--bad)}.dim{color:var(--dim)}.w{color:var(--warn)}
+.note{font-size:14px;color:var(--dim);margin:14px 0 0}
+.stack{display:flex;flex-wrap:wrap;gap:10px}
+.stack span{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 14px;font-size:14px}
+.rules{margin:0;padding:0;list-style:none}
+.rules li{padding:10px 0 10px 28px;position:relative;border-bottom:1px dashed var(--line)}
+.rules li:before{content:"\2713";position:absolute;left:0;color:var(--accent)}
+.rules b{color:var(--text)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--dim);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:760px){
+.hero{grid-template-columns:1fr;gap:28px;padding-top:28px}
+.photo{width:180px;height:180px;order:-1}
+.flow{grid-template-columns:1fr}.stage+.stage{margin-left:0;margin-top:-1px}
+.cards,.two{grid-template-columns:1fr}
+nav .links a{margin-left:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="mono"><div>~/alaa</div><div class="links"><a href="#approach">approach</a><a href="#proof">proof</a><a href="#work">work with me</a></div></nav>
 
-        <!-- TITLE OF SITE-->
-        <title> Alaa Ksontini Full stack web developer|Project Manager </title>
+<header class="hero">
+<div>
+<p class="tag mono">$ senior-backend-engineer --focus llm-data-layer</p>
+<h1>I build the <em>deterministic data pipelines</em> that make LLM features work in production.</h1>
+<p class="lede">Most LLM features break on the data, not the model. Senior backend engineer, about 8 years shipping backend systems, 2.5+ years putting LLM features on real customer data. Casablanca, Morocco. Remote for EU/US teams.</p>
+<div class="cta">
+<a class="primary" href="https://www.linkedin.com/in/alaa-ksontini-8a197683" rel="noopener">Message me on LinkedIn</a>
+<a href="https://github.com/alaaksontini" rel="noopener">GitHub</a>
+</div>
+</div>
+<div>
+<div class="photo">
+<span class="mono" aria-hidden="true">AK</span>
+<img src="assets/images/profile.jpg" alt="Portrait of Alaa Ksontini" onerror="this.remove()">
+</div>
+<div class="caption mono">status: open to work</div>
+</div>
+</header>
 
-        <!-- META TAG -->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="I'm a full stack web developer familiar with node.js, angular, laravel project pipelines and building processes.">
-        <meta name="author" content="Alaa ksontini web developer">
+<section id="approach">
+<h2><b>01</b> / Where the model sits</h2>
+<div class="flow mono">
+<div class="stage"><strong>INGEST</strong><span>csv, json, feeds</span></div>
+<div class="stage"><strong>NORMALIZE</strong><span>canonical shape</span></div>
+<div class="stage"><strong>VALIDATE</strong><span>rules in code</span></div>
+<div class="stage"><strong>DEDUPE</strong><span>exact + fuzzy</span></div>
+<div class="stage model"><strong>MODEL</strong><span>sees clean input only</span></div>
+</div>
+<div class="flowlabel mono"><span>deterministic, testable, owned</span><span class="m">probabilistic edge</span></div>
+<p class="note" style="margin-top:22px">Schemas, validation and business rules live in code, not prompts. Bad records are quarantined as data with a reason attached, so nothing is silently dropped and nothing corrupt reaches the model.</p>
+</section>
 
-        <!-- FAVICON -->
-        <link rel="icon" href="assets/images/favicon.ico">
-        <link rel="apple-touch-icon" sizes="72x72" href="assets/images/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="assets/images/apple-icon-76x76.html">
-        <link rel="apple-touch-icon" sizes="114x114" href="assets/images/apple-icon-114x114.png">
+<section>
+<h2><b>02</b> / What I do</h2>
+<div class="cards">
+<div class="card"><span class="n mono">01</span><h3>Deterministic pipelines</h3><p>Ingestion and validation that clean messy real-world data before any model call.</p></div>
+<div class="card"><span class="n mono">02</span><h3>Agents and orchestration</h3><p>Multi-step reasoning systems built on a foundation that can actually be tested.</p></div>
+<div class="card"><span class="n mono">03</span><h3>Middleware replacement</h3><p>Owned pipeline code instead of paid SaaS glue. I did this in production: the team now owns the code and controls data quality.</p></div>
+</div>
+</section>
 
-        <!-- ========================================
-                Stylesheets
-        ==========================================-->
+<section id="proof">
+<h2><b>03</b> / Proof, runnable</h2>
+<div class="term mono">
+<div class="bar">pipeline-under-the-model</div>
+<pre><span class="dim">$</span> npm run ask -- "standing desks under €300"
+<span class="ok">clean pipeline</span>   4 canonical products, each cited, prices normalized
 
-        <!-- MATERIALIZE CORE CSS -->
-        <link href="assets/css/materialize.min.css" rel="stylesheet">
+<span class="dim">$</span> npm run ask -- "standing desks under €300" --against-raw
+<span class="bad">same agent, raw data</span>   9 results: duplicates, "price unknown" rows, junk</pre>
+</div>
+<p class="note">Output is from the seeded dataset in the repo (120 raw records, 54 canonical products after validation and dedupe). No API keys, no external services. <a href="https://github.com/alaaksontini/pipeline-under-the-model" rel="noopener">Read the code and run it yourself</a>.</p>
+</section>
 
+<section>
+<h2><b>04</b> / How I work</h2>
+<ul class="rules">
+<li><b>Deterministic first.</b> The model only sees clean input.</li>
+<li><b>Production-grade.</b> Tests on messy input, not just the happy path.</li>
+<li><b>Honest about fit.</b> If your problem is deterministic, I will tell you not to use an LLM for it.</li>
+</ul>
+<h2 style="margin-top:34px"><b>stack</b></h2>
+<div class="stack mono"><span>Node.js / TypeScript</span><span>PHP</span><span>Python</span><span>Postgres / pgvector</span><span>LangChain</span><span>LangGraph</span><span>Mastra</span><span>MageAI</span></div>
+</section>
 
-        <!-- ADDITIONAL CSS -->
-        <link rel="stylesheet" href="assets/css/animate.css">
+<section id="work">
+<h2><b>05</b> / Work with me</h2>
+<div class="two">
+<div class="card"><h3>Full-time</h3><p>Senior backend and AI engineering roles, remote, EU/US.</p></div>
+<div class="card"><h3>Freelance</h3><p>Pipeline audits, LLM feature rescue, middleware replacement.</p></div>
+</div>
+<div class="cta" style="margin-top:26px"><a class="primary" href="https://www.linkedin.com/in/alaa-ksontini-8a197683" rel="noopener">Start on LinkedIn</a></div>
+</section>
 
-
-        <!-- FONTS -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-
-        <!--FONTAWESOME CSS-->
-        <link href="assets/icons/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
-        <!-- CUSTOM STYLE -->
-        <link href="assets/css/style.css" rel="stylesheet">
-
-
-        <!-- RESPONSIVE CSS-->
-        <link href="assets/css/responsive.css" rel="stylesheet">
-
-        <!-- COLORS -->
-        <link rel="alternate stylesheet" href="assets/css/colors/red.css" title="red">
-        <link rel="alternate stylesheet" href="assets/css/colors/purple.css" title="purple">
-        <link rel="alternate stylesheet" href="assets/css/colors/orange.css" title="orange">
-        <link rel="alternate stylesheet" href="assets/css/colors/green.css" title="green">
-        <link rel="stylesheet" href="assets/css/colors/lime.css" title="lime">
-
-
-        <!-- STYLE SWITCH STYLESHEET ONLY FOR DEMO -->
-        <link rel="stylesheet" href="assets/css/demo.css">
-
-        <!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif] -->
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-    </head>
-    <body>
-        <!-- Start Container-->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-            <!-- =========================================
-                           SIDEBAR
-            ==========================================-->
-                <!-- Start Sidebar -->
-                <aside class="col l4 m12 s12 sidebar z-depth-1" id="sidebar">
-                    <!--  Sidebar row -->
-                    <div class="row">
-                        <!--  top section   -->
-                        <div class="heading">
-                            <!-- ====================
-                                      IMAGE
-                            ==========================-->
-                            <div class="feature-img">
-                                <img src="assets/images/profile-img.jpg" class="responsive-img" alt="Alaa Ksontini web developer and project manager">
-
-                            </div>
-
-                        </div>
-                         <!-- sidebar info -->
-                        <div class="col l12 m12 s12 sort-info sidebar-item">
-                            <div class="row">
-                                <div class="col m12 s12 l3 icon"> <!-- icon -->
-                                   <i class="fa fa-user"></i>
-                                </div>
-                                <div class="col m12 s12 l9 info wow fadeIn a1" data-wow-delay="0.1s" > <!-- text -->
-                                    <div class="section-item-details">
-                                        <p>I'm a full stack web developer familiar with node.js, angular, laravel project pipelines and building processes</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- MOBILE NUMBER -->
-                        <div class="col l12 m12 s12  mobile sidebar-item">
-                            <div class="row">
-                                <div class="col m12 s12 l3 icon">
-                                    <i class="fa fa-phone"></i> <!-- icon -->
-                                </div>
-                                <div class="col m12 s12 l9 info wow fadeIn a2" data-wow-delay="0.2s" >
-                                    <div class="section-item-details">
-                                        <div class="personal">
-                                            <h4><a href="tel:555-555-5555">(00216)21.830.705</a></h4> <!-- Number -->
-                                            <span>mobile</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--  EMAIL -->
-                        <div class="col l12 m12 s12  email sidebar-item ">
-                            <div class="row">
-                                <div class="col m12 s12 l3 icon">
-                                    <i class="fa fa-envelope"></i> <!-- icon -->
-                                </div>
-                                <div class="col m12 s12 l9 info wow fadeIn a3" data-wow-delay="0.3s">
-                                    <div class="section-item-details">
-                                        <div class="personal">
-                                            <h4><a href="mailto:alaa.ksontini@gmail.com">alaa.ksontini@gmail.com</a></h4> <!-- Email -->
-                                            <span>personal</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- ADDRESS  -->
-                        <div class="col l12 m12 s12  address sidebar-item ">
-                            <div class="row">
-                                <div class="col l3 m12  s12 icon">
-                                    <i class="fa fa-home"></i> <!-- icon -->
-                                </div>
-                                <div class="col m12 s12 l9 info wow fadeIn a4" data-wow-delay="0.4s">
-                                    <div class="section-item-details">
-                                        <div class="address-details"> <!-- address  -->
-                                            <h4>22 Ibnou sina <span>Street</span><br>
-                                            Megrine, Ben arous<br>
-                                            <span>2033 Tunisia</span></h4>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- SKILLS -->
-                        <div class="col l12 m12 s12  skills sidebar-item" >
-                            <div class="row">
-                                <div class="col m12 l3 s12 icon">
-                                    <i class="fa fa-calendar-o"></i> <!-- icon -->
-                                </div>
-                                 <!-- Skills -->
-                                <div class="col m12 l9 s12 skill-line a5 wow fadeIn" data-wow-delay="0.5s">
-                                    <h3>Professional Skills </h3>
-
-                                    <span>Adobe Photoshop</span>
-                                    <div class="progress">
-                                        <div class="determinate"> 70% </div>
-                                    </div>
-
-                                    <span>HTML</span>
-                                    <div class="progress">
-                                        <div class="determinate"> 95%</div>
-                                    </div>
-
-                                    <span>CSS</span>
-                                    <div class="progress">
-                                        <div class="determinate">90%</div>
-                                    </div>
-
-                                    <span>Javascript</span>
-                                    <div class="progress">
-                                        <div class="determinate">95%</div>
-                                    </div>
-
-                                    <span>PHP</span>
-                                    <div class="progress">
-                                        <div class="determinate">80%</div>
-                                    </div>
-
-                                    <span>JAVA</span>
-                                    <div class="progress">
-                                        <div class="determinate">65%</div>
-                                    </div>
-
-                                    <span><a href="https://nodejs.org/">Node.js</a></span>
-                                    <div class="progress">
-                                        <div class="determinate">80%</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>   <!-- end row -->
-                </aside><!-- end sidebar -->
-
-                <!-- =========================================
-                   Work experiences
-                ==========================================-->
-
-                <section class="col s12 m12 l8 section">
-
-                    <div class="row">
-                        <div class="section-wrapper z-depth-1">
-                          <h1>Alaa Ksontini</h1>
-                            <div class="section-icon col s12 m12 l2">
-                                <i class="fa fa-suitcase"></i>
-                            </div>
-                            <div class="custom-content col s12 m12 l10 wow fadeIn a1" data-wow-delay="0.1s">
-                                <h2>Work Experience</h2>
-
-                                <div class="custom-content-wrapper wow fadeIn a2" data-wow-delay="0.2s">
-                                    <h3>Backend Developer <span>Freelance</span></h3>
-                                    <span>JULY 2016 - MAI 2017 </span>
-                                    <p>Design and implementation of a backend for custom PC builder web application using <strong>Laravel</strong>
-                                      the php framework for <strong>php</strong> artisans</p>
-                                </div>
-                                <div class="custom-content-wrapper wow fadeIn a3" data-wow-delay="0.3s">
-                                    <h3>Project manager <span>@Youth Decides</span></h3>
-                                    <span>JULy 2015 - AUGUST 2015 </span>
-                                    <p>Managing various website projects like shops, blogs and web applications
-                                      using <strong>Php</strong> , wordpress, Google Directory API</p>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <!-- ========================================
-                         Education
-                        ==========================================-->
-
-                        <div class="section-wrapper z-depth-1">
-                            <div class="section-icon col s12 m12 l2">
-                                <i class="fa fa-graduation-cap"></i>
-                            </div>
-                            <div class="custom-content col s12 m12 l10 wow fadeIn a1" data-wow-delay="0.1s" >
-                                <h2>Education </h2>
-
-                                <div class="custom-content-wrapper wow fadeIn a2" data-wow-delay="0.2s" >
-                                    <h3>Computer science <span>@Sadiki high school</span></h3>
-                                    <span>2010</span>
-                                    <p>Mastering basic of computer programming and <strong>algorythmic</strong> thinking.</p>
-                                </div>
-                                <div class="custom-content-wrapper wow fadeIn a3" data-wow-delay="0.3s" >
-                                    <h3>Prepartory Studies <span>@IPEIT</span></h3>
-                                    <span>2013</span>
-                                    <p>Intesive courses in Mathematics and physics in preparation for <strong>ingeneering</strong> studies</p>
-                                </div>
-                                <div class="custom-content-wrapper wow fadeIn a4" data-wow-delay="0.4s" >
-                                    <h3>Computer Science Degree <span>@ESPRIT</span></h3>
-                                    <span>2018 </span>
-                                    <p>Learning to design and implement solution for real world problems using new <strong>technologies</strong>
-                                      specializing in <strong>Web development</strong> and
-                                      modern frameworks for the Web like <strong><a class="link" href="https://angularjs.org/">Angular.js</a></strong>, <strong>React</strong>. Learning how to design strong backends
-                                      using <strong><a class="link" href="https://nodejs.org/">Node.js</a></strong>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- ========================================
-                              Intertests
-                        ==========================================-->
-
-                        <div class="section-wrapper z-depth-1">
-                            <div class="section-icon col s12 m12 l2">
-                                <i class="fa fa-plane"></i>
-                            </div>
-                            <div class="interests col s12 m12 l10 wow fadeIn" data-wow-delay="0.1s">
-                                <h2>Interests </h2>
-                                <ul> <!-- interetsr icon start -->
-                                    <li><i class="fa fa-camera-retro tooltipped" data-position="top" data-delay="50" data-tooltip="Photography"></i></li>
-                                    <li><i class="fa fa-glass tooltipped" data-position="top" data-delay="50" data-tooltip="Drinking"></i></li>
-                                    <li><i class="fa fa-headphones tooltipped" data-position="top" data-delay="50" data-tooltip="Music"></i></li>
-                                    <li><i class="fa fa-comments tooltipped" data-position="top" data-delay="50" data-tooltip="Chatting"></i></li>
-                                    <li><i class="fa fa-coffee tooltipped" data-position="top" data-delay="50" data-tooltip="Coffee"></i></li>
-                                </ul> <!-- interetsr icon end -->
-                            </div>
-                        </div>
-                        <!-- =======================================
-                          portfolio Website
-                        ==========================================-->
-
-                        <div class="section-wrapper z-depth-1 wow fadeIn" data-wow-delay="0.1s">
-                            <div class="col s12 m12 l10 website right" >
-                                <div class="row">
-                                    <div class="col s12 m12 l6">
-                                       <span><a href="#">www.alrayhan.com</a></span>
-                                    </div>
-                                    <div class="col col s12 m12 l6">
-                                        <span><a href="#">www.dribble.com/rtralrayhan</a></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- end row -->
-                </section><!-- end section -->
-            </div> <!-- end row -->
-        </div>  <!-- end container -->
-
- <!--=====================
-                JavaScript
-        ===================== -->
-        <!-- Jquery core js-->
-        <script src="assets/js/jquery.min.js"></script>
-
-        <!-- materialize js-->
-        <script src="assets/js/materialize.min.js"></script>
-
-        <!-- wow js-->
-        <script src="assets/js/wow.min.js"></script>
-
-        <!-- Map api -->
-        <script src="http://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-        <!-- Masonry js-->
-        <script src="assets/js/masonry.pkgd.js"></script>
-
-        <script src="assets/js/validator.min.js"></script>
-
-        <!-- Customized js -->
-        <script src="assets/js/init.js"></script>
-
-        <!-- =========================================================
-            STYLE SWITCHER | ONLY FOR DEMO NOT INCLUDED IN MAIN FILES
-        ===========================================================-->
-
-        <!-- Style switter js -->
-        <script src="assets/js/styleswitcher.js"></script>
-
-        <div class="cv-style-switch" id="switch-style">
-            <a id="toggle-switcher" class="switch-button icon_tools"> <i class="fa fa-cogs"></i></a>
-            <div class="switched-options">
-                <div class="config-title">
-                    Colors :
-                </div>
-                <ul class="styles">
-                    <li><a href="index-2.html#" onclick="setActiveStyleSheet('red'); return false;" title="Red">
-                    <div class="red"></div>
-                    </a></li>
-
-                    <li><a href="index-2.html#" onclick="setActiveStyleSheet('purple'); return false;" title="purple">
-                    <div class="purple"></div>
-                    </a></li>
-
-                    <li><a href="index-2.html#" onclick="setActiveStyleSheet('orange'); return false;" title="orange">
-                    <div class="orange"></div>
-                    </a></li>
-
-                    <li><a href="index-2.html#" onclick="setActiveStyleSheet('green'); return false;" title="green">
-                    <div class="green"></div>
-                    </a></li>
-
-                    <li><a href="index-2.html#" onclick="setActiveStyleSheet('lime'); return false;" title="lime">
-                    <div class="lime"></div>
-                    </a></li>
-
-                    <li class="p">
-                        ( NOTE: Pre Defined Colors. You can change colors very easily )
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </body>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-93089070-1', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-
-<!-- Mirrored from demo.deviserweb.com/cv/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 20 Feb 2017 19:57:15 GMT -->
+<footer class="mono"><span>Alaa Ksontini, Casablanca</span><span><a href="https://www.linkedin.com/in/alaa-ksontini-8a197683" rel="noopener">linkedin</a> / <a href="https://github.com/alaaksontini" rel="noopener">github</a></span></footer>
+</div>
+</body>
 </html>
