@@ -34,6 +34,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .photo img{width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1}
 .photo .mono{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:72px;color:var(--accent)}
 .photo:after{content:"";position:absolute;inset:0;z-index:2;background:repeating-linear-gradient(0deg,rgba(0,0,0,.08) 0 1px,transparent 1px 3px);pointer-events:none}
+.photo-col{min-width:0}
 .caption{font-size:12px;color:var(--dim);text-align:center;margin-top:12px}
 section{padding:44px 0;border-top:1px solid var(--line)}
 h2{font-size:14px;font-weight:500;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;margin:0 0 26px}
@@ -66,11 +67,27 @@ h2 b{color:var(--accent);font-weight:500}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 footer{padding:36px 0 48px;border-top:1px solid var(--line);color:var(--dim);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 @media(max-width:760px){
-.hero{grid-template-columns:1fr;gap:28px;padding-top:28px}
-.photo{width:180px;height:180px;order:-1}
+body{font-size:16px}
+.wrap{padding:0 18px}
+nav{padding:16px 0;flex-wrap:wrap;gap:8px 16px}
+nav .links a{margin:0 14px 0 0}
+.hero{grid-template-columns:1fr;gap:24px;padding:20px 0 32px}
+.photo-col{order:-1;display:flex;flex-direction:column;align-items:center}
+.photo{width:148px;height:148px;box-shadow:0 0 0 4px #0f1620,0 0 40px rgba(94,234,212,.12)}
+.photo .mono{font-size:52px}
+.caption{margin-top:14px}
+.hero>div:first-child{text-align:center}
+.tag{font-size:12px;overflow-wrap:anywhere;margin-bottom:14px}
+.lede{margin:0 auto 24px}
+.cta a{display:block;margin:0 0 10px;text-align:center}
+section{padding:32px 0}
+h2{margin-bottom:20px}
 .flow{grid-template-columns:1fr}.stage+.stage{margin-left:0;margin-top:-1px}
-.cards,.two{grid-template-columns:1fr}
-nav .links a{margin-left:14px}
+.flowlabel{flex-direction:column;gap:4px}
+.cards,.two{grid-template-columns:1fr;gap:14px}
+.term pre{font-size:12.5px;padding:14px;white-space:pre-wrap;overflow-wrap:anywhere}
+.stack span{font-size:13px;padding:5px 12px}
+footer{flex-direction:column;gap:6px}
 }
 </style>
 </head>
@@ -88,7 +105,7 @@ nav .links a{margin-left:14px}
 <a href="https://github.com/alaaksontini" rel="noopener">GitHub</a>
 </div>
 </div>
-<div>
+<div class="photo-col">
 <div class="photo">
 <span class="mono" aria-hidden="true">AK</span>
 <img src="assets/images/profile.jpg" alt="Portrait of Alaa Ksontini" onerror="this.remove()">
